@@ -1,7 +1,7 @@
 # project/server/config.py
 
 import os
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = os.path.abspath(os.path.dirname('/Desktop/cs519_c2_diagnostic_test'))
 postgres_local_base = 'sqlite:///'
 database_name = 'diagnostic'
 
