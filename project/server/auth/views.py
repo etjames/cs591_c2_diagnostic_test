@@ -26,7 +26,7 @@ class UserListAPI(MethodView):
 
 class HomepageAPI(MethodView):
     """
-    User List Resource
+    Homepage
     """
 
     def get(self):
