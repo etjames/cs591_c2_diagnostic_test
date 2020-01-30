@@ -24,6 +24,16 @@ class UserListAPI(MethodView):
 
         return make_response(string), 201
 
+class HomepageAPI(MethodView):
+    """
+    User List Resource
+    """
+
+    def get(self):
+
+        string = "Hello! Welcome to CS591 Assignment 1."
+        return make_response(string), 201
+
 
 class RegisterAPI(MethodView):
     """
@@ -78,6 +88,7 @@ class RegisterAPI(MethodView):
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
 user_list_view = UserListAPI.as_view('user_list_api')
+homepage_view = HomepageAPI.as_view('homepage_view')
 
 # add Rules for API Endpoints
 auth_blueprint.add_url_rule(
@@ -90,6 +101,13 @@ auth_blueprint.add_url_rule(
 auth_blueprint.add_url_rule(
     '/users/index',
     view_func=user_list_view,
+    methods=['GET']
+
+)
+
+auth_blueprint.add_url_rule(
+    '/',
+    view_func=homepage_view,
     methods=['GET']
 
 )
