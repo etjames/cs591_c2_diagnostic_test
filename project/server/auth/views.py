@@ -8,10 +8,28 @@ from project.server.models import User
 
 auth_blueprint = Blueprint('auth', __name__)
 
+class UserListAPI(MethodView):
+    """
+    User List Resource
+    """
+
+    def get(self):
+
+        string = "users:"
+            
+        q = User.query.all()
+        for users in q:
+            string += " "
+            string += (users.email)
+
+        return make_response(string), 201
+
+
 class RegisterAPI(MethodView):
     """
     User Registration Resource
     """
+
 
     def get(self):
     	responseObject = {
@@ -59,10 +77,19 @@ class RegisterAPI(MethodView):
 
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
+user_list_view = UserListAPI.as_view('user_list_api')
 
 # add Rules for API Endpoints
 auth_blueprint.add_url_rule(
     '/auth/register',
     view_func=registration_view,
     methods=['POST', 'GET']
+
+)
+
+auth_blueprint.add_url_rule(
+    '/users/index',
+    view_func=user_list_view,
+    methods=['GET']
+
 )
